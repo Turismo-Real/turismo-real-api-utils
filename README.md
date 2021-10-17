@@ -18,6 +18,7 @@ Servicio REST con utilidades para el front.
 Si region enviada en payload no corresponde a ninguna en la base de datos se espera como respuesta:  
 ```
 [
+    null,
     "No hay comunas para la región especificada."
 ]
 ```
