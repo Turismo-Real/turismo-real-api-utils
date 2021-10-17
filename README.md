@@ -7,7 +7,7 @@ Servicio REST con utilidades para el front.
 - http://localhost:4999/api/v1/utils/region
   - Obtiene las regiones disponibles en la base de datos.  
 - http://localhost:4999/api/v1/utils/comuna
-  - Obtiene las comunas de una región que es recibiba como payload de entrada.  
+  - Obtiene las comunas de una región que es recibida como payload de entrada.  
 
 ```
 # EJEMPLO PAYLOAD PARA OBTENER COMUNAS POR REGIÓN

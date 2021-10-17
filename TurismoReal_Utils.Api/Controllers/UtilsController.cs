@@ -14,13 +14,13 @@ namespace TurismoReal_Utils.Api.Controllers
         private readonly IUtilsRepository _utilsRepository;
         private readonly string serviceName = "turismo_real_utils";
 
+        // TODO: Agregar LOGS
         public UtilsController(IUtilsRepository utilsRepository)
         {
             _utilsRepository = utilsRepository;
         }
 
         // GET: /api/v1/utils/pais
-        
         [HttpGet]
         [Route("pais")]
         public async Task<List<string>> GetPaises()
@@ -30,7 +30,6 @@ namespace TurismoReal_Utils.Api.Controllers
         }
 
         // GET: /api/v1/utils/region
-        
         [HttpGet]
         [Route("region")]
         public async Task<List<string>> GetRegiones()
