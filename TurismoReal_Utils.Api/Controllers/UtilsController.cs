@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TurismoReal_Utils.Core.Entities;
 using TurismoReal_Utils.Core.Interfaces;
@@ -22,7 +20,9 @@ namespace TurismoReal_Utils.Api.Controllers
         }
 
         // GET: /api/v1/utils/pais
-        [HttpGet("{pais}")]
+        
+        [HttpGet]
+        [Route("pais")]
         public async Task<List<string>> GetPaises()
         {
             List<string> paises = await _utilsRepository.GetPaises();
@@ -30,19 +30,27 @@ namespace TurismoReal_Utils.Api.Controllers
         }
 
         // GET: /api/v1/utils/region
-        public async Task<List<object>> GetRegiones()
+        
+        [HttpGet]
+        [Route("region")]
+        public async Task<List<string>> GetRegiones()
         {
-            throw new NotImplementedException();
-            //List<Region> regiones = await _utilsRepository.GetRegiones();
-            //return regiones;
+            List<string> regiones = await _utilsRepository.GetRegiones();
+            return regiones;
         }
 
-        // GET: /api/v1/comuna/{region}
-        public async Task<List<object>> GetComunasByRegion([FromBody] Region region)
+        [HttpGet]
+        [Route("comuna")]
+        // GET: /api/v1/comuna
+        public async Task<List<string>> GetComunasByRegion([FromBody] Region region)
         {
-            throw new NotImplementedException();
-            //List<Comuna> comunas = _utilsRepository.GetComunasByRegion(region);
-            //return comunas;
+            List<string> comunas = await _utilsRepository.GetComunasByRegion(region);
+            if (comunas.Count == 0)
+            {
+                comunas.Add("No hay comunas para la región especificada.");
+            }
+                
+            return comunas;
         }
 
     }
