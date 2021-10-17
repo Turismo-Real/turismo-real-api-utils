@@ -15,6 +15,22 @@ namespace TurismoReal_Utils.Core.Log
         public object payload = null;
         public object response = null;
 
+        public void InitLog(string service, string method, string path, DateTime startRequest)
+        {
+            servicio = service;
+            this.method = method;
+            endpoint = path;
+            inicioSolicitud = startRequest;
+        }
+
+        public void EndLog(DateTime endRequest, int status, object response)
+        {
+            finSolicitud = endRequest;
+            tiempoSolicitud = (finSolicitud - inicioSolicitud).TotalMilliseconds + "ms";
+            statusCode = status;
+            this.response = response;
+        }
+
         public string parseJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this) + "\n";

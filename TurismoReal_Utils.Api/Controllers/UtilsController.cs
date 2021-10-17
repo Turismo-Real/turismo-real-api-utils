@@ -14,6 +14,7 @@ namespace TurismoReal_Utils.Api.Controllers
     {
         private readonly IUtilsRepository _utilsRepository;
         private readonly string serviceName = "turismo_real_utils";
+        private LogModel log;
 
         public UtilsController(IUtilsRepository utilsRepository)
         {
@@ -25,20 +26,13 @@ namespace TurismoReal_Utils.Api.Controllers
         [Route("pais")]
         public async Task<List<string>> GetPaises()
         {
-            LogModel log = new LogModel();
-            log.servicio = serviceName;
-            log.method = "GET";
-            log.endpoint = "/api/v1/utils/pais";
-            DateTime startService = DateTime.Now;
+            log = new LogModel();
+            log.InitLog(serviceName, "GET", "/api/v1/utils/pais", DateTime.Now);
 
             List<string> paises = await _utilsRepository.GetPaises();
 
             // LOG
-            log.inicioSolicitud = startService;
-            log.finSolicitud = DateTime.Now;
-            log.tiempoSolicitud = (log.finSolicitud - log.inicioSolicitud).TotalMilliseconds + " ms";
-            log.statusCode = 200;
-            log.response = paises;
+            log.EndLog(DateTime.Now, 200, paises);
             Console.WriteLine(log.parseJson());
             // LOG
             return paises;
@@ -49,20 +43,13 @@ namespace TurismoReal_Utils.Api.Controllers
         [Route("region")]
         public async Task<List<string>> GetRegiones()
         {
-            LogModel log = new LogModel();
-            log.servicio = serviceName;
-            log.method = "GET";
-            log.endpoint = "/api/v1/utils/region";
-            DateTime startService = DateTime.Now;
+            log = new LogModel();
+            log.InitLog(serviceName, "GET", "/api/v1/utils/region", DateTime.Now);
 
             List<string> regiones = await _utilsRepository.GetRegiones();
 
             // LOG
-            log.inicioSolicitud = startService;
-            log.finSolicitud = DateTime.Now;
-            log.tiempoSolicitud = (log.finSolicitud - log.inicioSolicitud).TotalMilliseconds + " ms";
-            log.statusCode = 200;
-            log.response = regiones;
+            log.EndLog(DateTime.Now, 200, regiones);
             Console.WriteLine(log.parseJson());
             // LOG
             return regiones;
@@ -73,11 +60,8 @@ namespace TurismoReal_Utils.Api.Controllers
         // GET: /api/v1/comuna
         public async Task<List<string>> GetComunasByRegion([FromBody] Region region)
         {
-            LogModel log = new LogModel();
-            log.servicio = serviceName;
-            log.method = "GET";
-            log.endpoint = "/api/v1/utils/region";
-            DateTime startService = DateTime.Now;
+            log = new LogModel();
+            log.InitLog(serviceName, "GET", "/api/v1/utils/comuna", DateTime.Now);
 
             List<string> comunas = await _utilsRepository.GetComunasByRegion(region);
             if (comunas.Count == 0)
@@ -87,11 +71,7 @@ namespace TurismoReal_Utils.Api.Controllers
             }
 
             // LOG
-            log.inicioSolicitud = startService;
-            log.finSolicitud = DateTime.Now;
-            log.tiempoSolicitud = (log.finSolicitud - log.inicioSolicitud).TotalMilliseconds + " ms";
-            log.statusCode = 200;
-            log.response = comunas;
+            log.EndLog(DateTime.Now, 200, comunas);
             Console.WriteLine(log.parseJson());
             // LOG
             return comunas;
