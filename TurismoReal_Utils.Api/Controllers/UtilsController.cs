@@ -87,7 +87,7 @@ namespace TurismoReal_Utils.Api.Controllers
         }
 
         [HttpGet]
-        [Route("tiposervicio")]
+        [Route("tiposservicio")]
         // GET: /api/v1/utils/tiposervicio
         public async Task<List<string>> GetTiposServicio()
         {
@@ -96,7 +96,7 @@ namespace TurismoReal_Utils.Api.Controllers
         }
 
         [HttpGet]
-        [Route("tipodepto")]
+        [Route("tiposdepto")]
         // GET: /api/v1/utils/tipodepto
         public async Task<List<string>> GetTiposDepto()
         {
@@ -105,12 +105,21 @@ namespace TurismoReal_Utils.Api.Controllers
         }
 
         [HttpGet]
-        [Route("estadodepto")]
+        [Route("estadosdepto")]
         // GET: /api/v1/utils/estadodepto
         public async Task<List<string>> GetEstadosDepto()
         {
             List<string> estadosDepto = await _utilsRepository.GetEstadosDepto();
             return estadosDepto;
+        }
+
+        [HttpGet]
+        [Route("estadosreserva")]
+        // GET: /api/v1/utils/estadosreserva
+        public async Task<List<string>> GetEstadosReserva()
+        {
+            List<string> estadosReserva = await _utilsRepository.GetEstadosReserva();
+            return estadosReserva;
         }
 
     }
