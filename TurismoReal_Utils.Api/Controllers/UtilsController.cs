@@ -97,11 +97,20 @@ namespace TurismoReal_Utils.Api.Controllers
 
         [HttpGet]
         [Route("tipodepto")]
-        // GET /api/v1/utils/tipodepto
+        // GET: /api/v1/utils/tipodepto
         public async Task<List<string>> GetTiposDepto()
         {
             List<string> tiposDepto = await _utilsRepository.GetTiposDepto();
             return tiposDepto;
+        }
+
+        [HttpGet]
+        [Route("estadodepto")]
+        // GET: /api/v1/utils/estadodepto
+        public async Task<List<string>> GetEstadosDepto()
+        {
+            List<string> estadosDepto = await _utilsRepository.GetEstadosDepto();
+            return estadosDepto;
         }
 
     }
