@@ -122,5 +122,14 @@ namespace TurismoReal_Utils.Api.Controllers
             return estadosReserva;
         }
 
+        [HttpGet]
+        [Route("tiposmantencion")]
+        // GET: /api/v1/utils/tiposmantencion
+        public async Task<List<string>> GetTiposMantencion()
+        {
+            List<string> tiposMantencion = await _utilsRepository.GetTiposMantencion();
+            return tiposMantencion;
+        }
+
     }
 }
