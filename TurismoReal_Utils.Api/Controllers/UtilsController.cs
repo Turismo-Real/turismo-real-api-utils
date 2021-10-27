@@ -149,5 +149,14 @@ namespace TurismoReal_Utils.Api.Controllers
             return tiposGasto;
         }
 
+        [HttpGet]
+        [Route("tipospago")]
+        // GET: /api/v1/utils/tipospago
+        public async Task<List<string>> GetTiposPago()
+        {
+            List<string> tiposPago = await _utilsRepository.GetTiposPago();
+            return tiposPago;
+        }
+
     }
 }
