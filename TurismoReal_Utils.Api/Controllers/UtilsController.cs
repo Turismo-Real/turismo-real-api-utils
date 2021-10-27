@@ -55,9 +55,9 @@ namespace TurismoReal_Utils.Api.Controllers
             return regiones;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("comuna")]
-        // GET: /api/v1/comuna
+        // POST: /api/v1/utils/comuna
         public async Task<List<string>> GetComunasByRegion([FromBody] Region region)
         {
             log = new LogModel();
@@ -75,6 +75,15 @@ namespace TurismoReal_Utils.Api.Controllers
             Console.WriteLine(log.parseJson());
             // LOG
             return comunas;
+        }
+
+        [HttpGet]
+        [Route("instalaciones")]
+        // GET: /api/v1/utils/instalaciones
+        public async Task<List<string>> GetInstalaciones()
+        {
+            List<string> instalaciones = await _utilsRepository.GetInstalaciones();
+            return instalaciones;
         }
 
     }
