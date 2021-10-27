@@ -140,5 +140,14 @@ namespace TurismoReal_Utils.Api.Controllers
             return estadosMantencion;
         }
 
+        [HttpGet]
+        [Route("tiposgasto")]
+        // GET: /api/v1/utils/tiposgasto
+        public async Task<List<string>> GetTiposGasto()
+        {
+            List<string> tiposGasto = await _utilsRepository.GetTiposGasto();
+            return tiposGasto;
+        }
+
     }
 }
